@@ -60,6 +60,6 @@ const generateRTCToken = (req, resp) => {
 
 app.get('/rtc/:channel/:role/:tokentype/:uid', nocache , generateRTCToken)
 
-app.listen(PORT, () => {
+app.listen(PORT || 8000, () => {
     console.log(PORT);
 });
