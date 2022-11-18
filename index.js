@@ -11,8 +11,8 @@ const nocache = (_, resp, next) => {
     next();
 }
 
-APP_ID=process.env.APP_ID;
-APP_CERTIFICATE=process.APP_CERTIFICATE;
+APP_ID=`${process.env.APP_ID}`;
+APP_CERTIFICATE=`${process.APP_CERTIFICATE}`;
 PORT=process.env.PORT_NUM;
 
 const generateRTCToken = (req, resp) => {
@@ -57,6 +57,10 @@ const generateRTCToken = (req, resp) => {
 
     return resp.json({ 'rtcToken': token });
 };
+
+app.get('/', (req, res) => {
+    res.json({"Route": "/rtc/:channel/:role/:tokentype/:uid"})
+})
 
 app.get('/rtc/:channel/:role/:tokentype/:uid', nocache , generateRTCToken)
 
